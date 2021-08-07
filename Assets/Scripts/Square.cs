@@ -6,20 +6,31 @@ public class Square : MonoBehaviour
 {
 
     public float health = 50f;
+    public int score = 50;
+    public int touchDamage = 10;
 
     public GameObject bullet;
+    private GameObject WaveSpawner;
 
     public float fireRate = 1f;
     private float fireRateCooldown = 0f;
+    public float firstShotDelay = 1f;
+
+    private void Start()
+    {
+        WaveSpawner = GameObject.Find("WaveSpawner");
+    }
 
     // Update is called once per frame
     void Update()
     {
         //Fire a bullet every "fireRate" seconds
-        if(Time.time >= fireRateCooldown)
+        if (Time.time >= fireRateCooldown && firstShotDelay <= 0)
         {
             Fire();
         }
+        else
+            firstShotDelay -= Time.deltaTime;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -27,11 +38,13 @@ public class Square : MonoBehaviour
         if(collision.gameObject.tag.Equals("PlayerBullet"))
         {
             Debug.Log("Player bullet hit Enemy!");
+            WaveSpawner.GetComponent<WaveSpawner>().enemyKilled(score);
             Destroy(collision.gameObject);
+            Destroy(gameObject);
         }
         if (collision.gameObject.tag.Equals("Player"))
         {
-            collision.gameObject.GetComponent<PlayerHealth>().takeDamage(10);
+            collision.gameObject.GetComponent<PlayerHealth>().takeDamage(touchDamage);
             Debug.Log("Player touched Square!");
         }
     }

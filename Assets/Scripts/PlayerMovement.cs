@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -20,8 +21,16 @@ public class PlayerMovement : MonoBehaviour
     private bool facingWall = false;
 
     public Rigidbody2D rb;
+    public Slider dashSlider;
+    public Image fill;
 
     Vector2 movement;
+
+    private void Start()
+    {
+        dashSlider.maxValue = dashRate;
+        dashSlider.value = dashRate;
+    }
 
     // Update is called once per frame
     void Update()
@@ -33,6 +42,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         //Checks how close player is to the wall
+        Debug.DrawRay(transform.position, currentDirection*unitsFromWall, Color.magenta);
         RaycastHit2D rc = Physics2D.Raycast(transform.position+currentDirection, currentDirection, 10f);
         if (rc.collider != null && rc.collider.gameObject.tag.Equals("Wall"))
         {
@@ -50,6 +60,7 @@ public class PlayerMovement : MonoBehaviour
         if (canDash && !facingWall && (currentDirection.x != 0 || currentDirection.y != 0) && Input.GetMouseButtonDown(1))
         {
             Dash();
+            dashSlider.value = 0f;
         }
 
         //Enables movement after dashing
@@ -58,7 +69,14 @@ public class PlayerMovement : MonoBehaviour
             enableMovement();
         }
 
-        Debug.DrawRay(transform.position, currentDirection, Color.blue);
+        // Dash Slider code
+        if (!canDash)
+        {
+            dashSlider.gameObject.SetActive(true);
+            dashSlider.value += Time.deltaTime;
+        }
+        else
+            dashSlider.gameObject.SetActive(false);
     }
 
     void FixedUpdate()

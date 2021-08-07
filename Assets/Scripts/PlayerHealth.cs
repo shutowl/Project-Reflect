@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PlayerHealth : MonoBehaviour
 {
@@ -21,15 +22,18 @@ public class PlayerHealth : MonoBehaviour
 
     public void takeDamage(int damage)
     {
-        if(currentHealth > 0)
+        GameObject.Find("WaveSpawner").GetComponent<WaveSpawner>().resetMultiplier();
+
+        if (currentHealth > 0)
         {
             currentHealth -= damage;
             setHealth(currentHealth);
-        }
-        else
-        {
-            Debug.Log("Player's health has reached 0!");
-            //Game over stuff
+
+            if(currentHealth <= 0)
+            {
+                Debug.Log("Player's health has reached 0!");
+                SceneManager.LoadScene("Test Arena");
+            }
         }
     }
 

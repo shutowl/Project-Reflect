@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 5747038240486185371}
   - component: {fileID: 5747038240486185370}
   - component: {fileID: 5747038240486185445}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Square
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -151,5 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   health: 50
+  score: 50
   bullet: {fileID: 216101780926376922, guid: ddd5ec5ed4a520a48b0305e7422c716c, type: 3}
   fireRate: 1
+  firstShotDelay: 1

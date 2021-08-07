@@ -18,6 +18,7 @@ public class PlayerNormalBullet : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        speed = GameObject.FindGameObjectWithTag("Reflect").GetComponent<Reflect>().getBulletSpeed();
         player = GameObject.FindGameObjectWithTag("Player");
 
         rb = GetComponent<Rigidbody2D>();

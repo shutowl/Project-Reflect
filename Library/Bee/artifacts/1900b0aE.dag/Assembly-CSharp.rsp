@@ -347,6 +347,7 @@
 "Assets/Scripts/PlayerReflect.cs"
 "Assets/Scripts/Reflect.cs"
 "Assets/Scripts/Square.cs"
+"Assets/Scripts/WaveSpawner.cs"
 -langversion:8.0
 
 /deterministic

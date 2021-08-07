@@ -5,6 +5,7 @@ using UnityEngine;
 public class NormalBullet : MonoBehaviour
 {
     public float speed = 4f;
+    public int damage = 10;
 
     public GameObject target;
     Rigidbody2D rb;
@@ -33,7 +34,7 @@ public class NormalBullet : MonoBehaviour
         if (collision.gameObject.name.Equals("Player"))
         {
             Debug.Log("Bullet Hit Player!");
-            collision.gameObject.GetComponent<PlayerHealth>().takeDamage(10);
+            collision.gameObject.GetComponent<PlayerHealth>().takeDamage(damage);
             Destroy(gameObject);
         }
         if (collision.gameObject.name.Equals("TriggerWall"))

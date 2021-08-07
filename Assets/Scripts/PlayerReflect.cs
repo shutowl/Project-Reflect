@@ -30,7 +30,6 @@ public class PlayerReflect : MonoBehaviour
     {
         reflectSlider.maxValue = reflectRate;
         reflectSlider.value = reflectRate;
-        //reflectSlider.gameObject.SetActive(false);
     }
 
     // Update is called once per frame

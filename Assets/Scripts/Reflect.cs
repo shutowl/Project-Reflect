@@ -6,6 +6,7 @@ public class Reflect : MonoBehaviour
 {
 
     public float destroyDelay = 0f;
+    private float bulletSpeed = 0;
 
     private GameObject player;
     public GameObject playerNormalBullet;
@@ -31,11 +32,17 @@ public class Reflect : MonoBehaviour
         if (collision.gameObject.tag.Equals("NormalBullet"))
         {
             Debug.Log("Normal Bullet Reflected!");
+            bulletSpeed = collision.gameObject.GetComponent<NormalBullet>().speed;
             Destroy(collision.gameObject);
 
             //Create a player bullet going opposite direction
             Instantiate(playerNormalBullet, collision.transform.position, Quaternion.identity);
         }
+    }
+
+    public float getBulletSpeed()
+    {
+        return bulletSpeed;
     }
 
 

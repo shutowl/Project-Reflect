@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2769090463650800568}
   - component: {fileID: 8932832641996526702}
   - component: {fileID: 6498187372546846794}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: NormalBullet
   m_TagString: NormalBullet
   m_Icon: {fileID: 0}
@@ -149,5 +149,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
+  damage: 10
   target: {fileID: 0}
-  playerBullet: {fileID: 216101780926376922, guid: 76da6948a8982ff4f8995394b1324153, type: 3}
