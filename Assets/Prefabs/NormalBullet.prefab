@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2769090463650800568}
   - component: {fileID: 8932832641996526702}
   - component: {fileID: 6498187372546846794}
+  - component: {fileID: -8990426269194921824}
   m_Layer: 2
   m_Name: NormalBullet
   m_TagString: NormalBullet
@@ -75,8 +76,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 3625043607559282579, guid: 19fb86013d8c24d6cb8410c0aadf30fa, type: 3}
-  m_Color: {r: 1, g: 0.0812667, b: 0, a: 1}
+  m_Sprite: {fileID: 669744573470034421, guid: ae3ccfcf2e96263458bdc91b00d0d12d, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -124,7 +125,7 @@ PolygonCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 0.5}
+    oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 0.5}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -132,10 +133,13 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: 0, y: 0.25}
-      - {x: -0.5, y: 0}
-      - {x: 0, y: -0.25}
-      - {x: 0.5, y: 0}
+    - - {x: 0.18890238, y: 0.36721265}
+      - {x: -0.00076108985, y: 0.24825771}
+      - {x: -0.18802911, y: 0.37054858}
+      - {x: -0.1874836, y: 0.37372088}
+      - {x: -0.37310863, y: 0.1731582}
+      - {x: -0.0044947113, y: -0.35199636}
+      - {x: 0.37310863, y: 0.18219793}
 --- !u!114 &6498187372546846794
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,4 +154,26 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 4
   damage: 10
+  angleOffset: 90
+  explosionLength: 0.4
   target: {fileID: 0}
+  animator: {fileID: -8990426269194921824}
+--- !u!95 &-8990426269194921824
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 216101780926376922}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 0bce7f0ff508d19488d12986a94a97f5, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

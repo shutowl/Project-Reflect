@@ -6,11 +6,14 @@ public class PlayerNormalBullet : MonoBehaviour
 {
     public float speed = 4f;
     public float offset = 3f;
+    public float angleOffset = 90f;
+    public float explosionLength = 0.4f;
 
     private Vector3 mousePos = new Vector3();
     private float mouseAngle = 0f;
     private Vector3 mouseOffset = new Vector3();
     Rigidbody2D rb;
+    public Animator animator;
 
     private Vector2 direction;
     private GameObject player;
@@ -37,7 +40,7 @@ public class PlayerNormalBullet : MonoBehaviour
         rb.velocity = new Vector2(direction.x, direction.y);
 
         //Rotate bullet towards last mouse position
-        transform.localEulerAngles = new Vector3(0, 0, mouseAngle);
+        transform.localEulerAngles = new Vector3(0, 0, mouseAngle + angleOffset);
 
         //Destroy bullet after x seconds
         Destroy(gameObject, 5f);
@@ -47,7 +50,15 @@ public class PlayerNormalBullet : MonoBehaviour
     {
         if (collision.gameObject.name.Equals("TriggerWall"))
         {
-            Destroy(gameObject);
+            rb.velocity = Vector2.zero;
+            animator.SetTrigger("collision");
+            Destroy(gameObject, explosionLength);
+        }
+        if (collision.gameObject.tag.Equals("Enemy"))
+        {
+            rb.velocity = Vector2.zero;
+            animator.SetTrigger("collision");
+            Destroy(gameObject, explosionLength);
         }
 
     }

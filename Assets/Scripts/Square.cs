@@ -39,7 +39,6 @@ public class Square : MonoBehaviour
         {
             Debug.Log("Player bullet hit Enemy!");
             WaveSpawner.GetComponent<WaveSpawner>().enemyKilled(score);
-            Destroy(collision.gameObject);
             Destroy(gameObject);
         }
         if (collision.gameObject.tag.Equals("Player"))

@@ -29,7 +29,7 @@ public class Reflect : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag.Equals("NormalBullet"))
+        if (collision.gameObject.tag.Equals("NormalBullet") && collision.GetComponent<NormalBullet>().isReflectable())
         {
             Debug.Log("Normal Bullet Reflected!");
             bulletSpeed = collision.gameObject.GetComponent<NormalBullet>().speed;

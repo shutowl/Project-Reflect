@@ -23,6 +23,9 @@ public class PlayerMovement : MonoBehaviour
     public Rigidbody2D rb;
     public Slider dashSlider;
     public Image fill;
+    public SpriteRenderer sprite;
+
+    public Animator animator;
 
     Vector2 movement;
 
@@ -41,13 +44,19 @@ public class PlayerMovement : MonoBehaviour
             movement.y = Input.GetAxisRaw("Vertical");
         }
 
+        animator.SetFloat("Current Direction", Mathf.Abs(currentDirection.x) + Mathf.Abs(currentDirection.y));
+        if (currentDirection.x < 0)
+            sprite.flipX = true;
+        else if(currentDirection.x > 0)
+            sprite.flipX = false;
+
         //Checks how close player is to the wall
         Debug.DrawRay(transform.position, currentDirection*unitsFromWall, Color.magenta);
-        RaycastHit2D rc = Physics2D.Raycast(transform.position+currentDirection, currentDirection, 10f);
+        RaycastHit2D rc = Physics2D.Raycast(transform.position+currentDirection, currentDirection, 50f);
         if (rc.collider != null && rc.collider.gameObject.tag.Equals("Wall"))
         {
             unitsFromWall = rc.distance;
-            //Debug.Log("units from wall = " + unitsFromWall);
+            Debug.Log("units from wall = " + unitsFromWall);
         }
 
         //Enables dash every "dashDuration" seconds
