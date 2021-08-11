@@ -1,0 +1,8 @@
+Layers:
+
+Player UI = 5
+Base2 = 4
+Bullets = 3
+Player = 2
+Walls = 1
+Base1 = 0

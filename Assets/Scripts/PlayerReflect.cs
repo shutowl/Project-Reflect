@@ -12,24 +12,37 @@ public class PlayerReflect : MonoBehaviour
     public float positionOffset = 1.5f;
     public float angleOffset = -90f;
 
-    public GameObject Reflect;
-    public float reflectRate = 1f;
-    private float reflectCooldown = 0f;
-    private bool canReflect = true;
+    public GameObject ReflectBlack;
+    public GameObject ReflectRed;
+
+    public float reflectRateBlack = 1f;
+    private float reflectCooldownBlack = 0f;
+    private bool canReflectBlack = true;
+
+    public float reflectRateRed = 1f;
+    private float reflectCooldownRed = 0f;
+    private bool canReflectRed = true;
 
     private Vector3 lastMousePos = new Vector3();
     private Vector3 mousePos = new Vector3();
     private Vector3 posOffsetVector = new Vector3();
     private float mouseAngle = 0f;
 
-    public Slider reflectSlider;
-    public Image fill;
+    public Slider reflectSliderBlack;
+    public Image fillBlack;
+    public Slider reflectSliderRed;
+    public Image fillRed;
+
+    public float reflectDelay = 0.5f; //delay between reflects
+    private float reflectDelayTimer = 0f;
 
 
     private void Start()
     {
-        reflectSlider.maxValue = reflectRate;
-        reflectSlider.value = reflectRate;
+        reflectSliderBlack.maxValue = reflectRateBlack;
+        reflectSliderBlack.value = reflectRateBlack;
+        reflectSliderRed.maxValue = reflectRateRed;
+        reflectSliderRed.value = reflectRateRed;
     }
 
     // Update is called once per frame
@@ -39,26 +52,48 @@ public class PlayerReflect : MonoBehaviour
         //Debug.Log("Mouse Position: " + mousePos);
 
         //Fire a reflect every "reflectRate" seconds
-        if (!canReflect && Time.time >= reflectCooldown)
+        if (!canReflectBlack && Time.time >= reflectCooldownBlack)
         {
-            canReflect = true;
+            canReflectBlack = true;
+        }
+        if (!canReflectRed && Time.time >= reflectCooldownRed)
+        {
+            canReflectRed = true;
         }
 
         // reflect is available, left click = reflect
-        if(canReflect && Input.GetMouseButton(0))
+        if (reflectDelayTimer <= 0 && canReflectBlack && Input.GetMouseButton(0))
         {
-            reflect();
-            reflectSlider.value = 0f;
+            reflectRasetsu();
+            reflectSliderBlack.value = 0f;
+        }
+        if(reflectDelayTimer <= 0 && canReflectRed && Input.GetMouseButton(0))
+        {
+            reflectAshura();
+            reflectSliderRed.value = 0f;
         }
 
         // Slider code
-        if (!canReflect)
+        if (!canReflectBlack)
         {
-            reflectSlider.gameObject.SetActive(true);
-            reflectSlider.value += Time.deltaTime;
+            reflectSliderBlack.gameObject.SetActive(true);
+            reflectSliderBlack.value += Time.deltaTime;
         }
         else
-            reflectSlider.gameObject.SetActive(false);
+            reflectSliderBlack.gameObject.SetActive(false);
+
+        if (!canReflectRed)
+        {
+            reflectSliderRed.gameObject.SetActive(true);
+            reflectSliderRed.value += Time.deltaTime;
+        }
+        else
+            reflectSliderRed.gameObject.SetActive(false);
+
+        if(reflectDelayTimer >= 0)
+        {
+            reflectDelayTimer -= Time.deltaTime;
+        }
 
     }
 
@@ -71,17 +106,32 @@ public class PlayerReflect : MonoBehaviour
 
     //summons reflect at player position + offset
     //offset prevents reflect from summoning behind the player
-    private void reflect()
+    private void reflectRasetsu()   //black sword
     {
-        canReflect = false;
+        canReflectBlack = false;
+        reflectDelayTimer = reflectDelay;
 
         lastMousePos = mousePos;
 
         posOffsetVector.x = positionOffset * Mathf.Cos(mouseAngle * Mathf.Deg2Rad);
         posOffsetVector.y = positionOffset * Mathf.Sin(mouseAngle * Mathf.Deg2Rad);
-        Instantiate(Reflect, transform.position + posOffsetVector, Quaternion.identity);
+        Instantiate(ReflectBlack, transform.position + posOffsetVector, Quaternion.identity);
 
-        reflectCooldown = Time.time + reflectRate;
+        reflectCooldownBlack = Time.time + reflectRateBlack;
+    }
+
+    private void reflectAshura()    //red sword
+    {
+        canReflectRed = false;
+        reflectDelayTimer = reflectDelay;
+
+        lastMousePos = mousePos;
+
+        posOffsetVector.x = positionOffset * Mathf.Cos(mouseAngle * Mathf.Deg2Rad);
+        posOffsetVector.y = positionOffset * Mathf.Sin(mouseAngle * Mathf.Deg2Rad);
+        Instantiate(ReflectRed, transform.position + posOffsetVector, Quaternion.identity);
+
+        reflectCooldownRed = Time.time + reflectRateRed;
     }
 
     //Returns mouse angle in DEGREES

@@ -56,7 +56,7 @@ public class PlayerMovement : MonoBehaviour
         if (rc.collider != null && rc.collider.gameObject.tag.Equals("Wall"))
         {
             unitsFromWall = rc.distance;
-            Debug.Log("units from wall = " + unitsFromWall);
+            //Debug.Log("units from wall = " + unitsFromWall);
         }
 
         //Enables dash every "dashDuration" seconds

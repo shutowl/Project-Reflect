@@ -35,17 +35,19 @@ public class Square : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag.Equals("PlayerBullet"))
+        if(collision.gameObject.CompareTag("PlayerBullet"))
         {
             Debug.Log("Player bullet hit Enemy!");
             WaveSpawner.GetComponent<WaveSpawner>().enemyKilled(score);
             Destroy(gameObject);
         }
-        if (collision.gameObject.tag.Equals("Player"))
+        /*
+        if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerHealth>().takeDamage(touchDamage);
             Debug.Log("Player touched Square!");
         }
+        */
     }
 
     private void Fire()

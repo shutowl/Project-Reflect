@@ -7,6 +7,7 @@ public class WaveSpawner : MonoBehaviour
 {
     public int enemiesLeft = 4;
     public float timePerEnemy = 5f;
+    public float maxTime = 30f;
     public Text timerText;
     public Text enemiesLeftText;
     public Text scoreText;
@@ -76,7 +77,10 @@ public class WaveSpawner : MonoBehaviour
         }
 
         //Reset wave time (maybe changes depending on number of enemies)
-        waveTimer = timePerEnemy * enemiesLeft;
+        if (timePerEnemy * enemiesLeft >= maxTime)
+            waveTimer = maxTime;
+        else
+            waveTimer = timePerEnemy * enemiesLeft;
     }
 
     private void SpawnSquare(int amount)

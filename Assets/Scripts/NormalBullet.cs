@@ -38,27 +38,28 @@ public class NormalBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name.Equals("Player"))
-        {
-            Debug.Log("Bullet Hit Player!");
-            reflectable = false;
-            animator.SetTrigger("collision");
-            rb.velocity = Vector2.zero;
-            collision.gameObject.GetComponent<PlayerHealth>().takeDamage(damage);
-            Destroy(gameObject, explosionLength);
-        }
-        if (collision.gameObject.name.Equals("TriggerWall"))
+        if (collision.name.Equals("PlayerHitbox"))
         {
             //Debug.Log("Bullet Hit Wall!");
-            reflectable = false;
-            rb.velocity = Vector2.zero;
-            animator.SetTrigger("collision");
-            Destroy(gameObject, explosionLength);
+            collision.GetComponentInParent<PlayerHealth>().takeDamage(damage);
+            explode();
+        }
+        if(collision.name.Equals("TriggerWall"))
+        {
+            explode();
         }
     }
 
     public bool isReflectable()
     {
         return reflectable;
+    }
+
+    public void explode()
+    {
+        reflectable = false;
+        animator.SetTrigger("collision");
+        rb.velocity = Vector2.zero;
+        Destroy(gameObject, explosionLength);
     }
 }

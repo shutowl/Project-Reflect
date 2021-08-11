@@ -54,4 +54,5 @@ public class PlayerHealth : MonoBehaviour
 
         HPText.text = "" + maxHealth;
     }
+
 }

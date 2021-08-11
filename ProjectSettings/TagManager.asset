@@ -9,6 +9,7 @@ TagManager:
   - Reflect
   - NormalBullet
   - PlayerBullet
+  - PlayerHitbox
   layers:
   - Default
   - TransparentFX
@@ -45,4 +46,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bullets
+    uniqueID: 3334717257
     locked: 0
