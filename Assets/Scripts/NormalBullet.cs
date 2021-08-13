@@ -14,12 +14,12 @@ public class NormalBullet : MonoBehaviour
     public Animator animator;
 
     private Vector2 direction;
-    private bool reflectable = true;
+    private bool active = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        reflectable = true;
+        active = true;
 
         rb = GetComponent<Rigidbody2D>();
         target = GameObject.FindGameObjectWithTag("Player");
@@ -38,7 +38,7 @@ public class NormalBullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.name.Equals("PlayerHitbox"))
+        if (collision.name.Equals("PlayerHitbox") && active)
         {
             //Debug.Log("Bullet Hit Wall!");
             collision.GetComponentInParent<PlayerHealth>().takeDamage(damage);
@@ -50,14 +50,14 @@ public class NormalBullet : MonoBehaviour
         }
     }
 
-    public bool isReflectable()
+    public bool isActive()
     {
-        return reflectable;
+        return active;
     }
 
     public void explode()
     {
-        reflectable = false;
+        active = false;
         animator.SetTrigger("collision");
         rb.velocity = Vector2.zero;
         Destroy(gameObject, explosionLength);

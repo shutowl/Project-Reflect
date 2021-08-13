@@ -75,8 +75,22 @@ public class WaveSpawner : MonoBehaviour
             SpawnSquare(addEnemies);
             enemiesLeftText.text = "Enemies Left: " + enemiesLeft;
         }
+        //Boss battle at wave 10
+        if(waveNumber == 10)
+        {
+            enemyWaveOffset = 0;
+        }
+        if(waveNumber > 10 && waveNumber <= 20)
+        {
+            enemyWaveOffset++;
+            int addEnemies = Random.Range(3 + enemyWaveOffset, 6 + enemyWaveOffset);
+            enemiesLeft += addEnemies;
+            //Spawn different enemies
+            SpawnSquare(addEnemies);
+            enemiesLeftText.text = "Enemies Left: " + enemiesLeft;
+        }
 
-        //Reset wave time (maybe changes depending on number of enemies)
+        //Reset wave time (depends on number of enemies)
         if (timePerEnemy * enemiesLeft >= maxTime)
             waveTimer = maxTime;
         else

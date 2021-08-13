@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private float unitsFromWall;
     private bool canDash = true;
     private bool facingWall = false;
+    private Vector3 dashRayOffset = new Vector3(0, 0.5f);
 
     public Rigidbody2D rb;
     public Slider dashSlider;
@@ -51,8 +52,8 @@ public class PlayerMovement : MonoBehaviour
             sprite.flipX = false;
 
         //Checks how close player is to the wall
-        Debug.DrawRay(transform.position, currentDirection*unitsFromWall, Color.magenta);
-        RaycastHit2D rc = Physics2D.Raycast(transform.position+currentDirection, currentDirection, 50f);
+        Debug.DrawRay(transform.position + currentDirection - dashRayOffset, currentDirection*unitsFromWall, Color.magenta);
+        RaycastHit2D rc = Physics2D.Raycast(transform.position+currentDirection-dashRayOffset, currentDirection, 50f);
         if (rc.collider != null && rc.collider.gameObject.tag.Equals("Wall"))
         {
             unitsFromWall = rc.distance;
@@ -111,6 +112,7 @@ public class PlayerMovement : MonoBehaviour
     void Dash()
     {
         canDash = false;
+        movement = Vector2.zero;
         disableMovement();
 
         //Dash Logic
