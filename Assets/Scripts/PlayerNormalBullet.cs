@@ -5,13 +5,11 @@ using UnityEngine;
 public class PlayerNormalBullet : MonoBehaviour
 {
     public float speed = 4f;
-    public float offset = 3f;
     public float angleOffset = 90f;
     public float explosionLength = 0.4f;
 
     private Vector3 mousePos = new Vector3();
     private float mouseAngle = 0f;
-    private Vector3 mouseOffset = new Vector3();
     Rigidbody2D rb;
     public Animator animator;
 
@@ -27,12 +25,7 @@ public class PlayerNormalBullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         //Determine mouse position and angle
-        mousePos = player.GetComponent<PlayerReflect>().getLastMousePosition();
-
-        mouseOffset.x = offset * Mathf.Cos(player.GetComponent<PlayerReflect>().getMouseAngle() * Mathf.Deg2Rad);
-        mouseOffset.y = offset * Mathf.Sin(player.GetComponent<PlayerReflect>().getMouseAngle() * Mathf.Deg2Rad);
-
-        mousePos += mouseOffset;
+        mousePos = player.GetComponent<PlayerReflect>().getLastMousePositionWithOffset();
         mouseAngle = player.GetComponent<PlayerReflect>().getMouseAngle(transform.position, mousePos);
 
         //Determine direction of bullet

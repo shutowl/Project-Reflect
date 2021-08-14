@@ -47,10 +47,11 @@ public class WaveSpawner : MonoBehaviour
 
         if(waveComplete)
         {
-            score += timeScore * (int)waveTimer;
+            score += timeScore * (int)waveTimer * (int)multiplier;
             waveTimer = 5f;
             waveComplete = false;
-            score += waveScore * waveNumber;
+            score += waveScore * waveNumber * (int)multiplier;
+            scoreText.text = "Score: " + score;
         }
 
         if(waveTimer <= 0)
@@ -108,7 +109,7 @@ public class WaveSpawner : MonoBehaviour
     public void enemyKilled(int score)
     {
         //set multiplier text
-        if (multiplier <= 5.0f)
+        if (multiplier < 5.0f)
         {
             multiplier += 0.1f;
             multiplierText.text = "Combo: x" + System.Math.Round(multiplier, 1);

@@ -156,4 +156,13 @@ public class PlayerReflect : MonoBehaviour
     {
         return lastMousePos;
     }
+
+    public Vector3 getLastMousePositionWithOffset()
+    {
+        Vector3 offset = new Vector3();
+        offset.x = 3f * Mathf.Cos(getMouseAngle() * Mathf.Deg2Rad);
+        offset.y = 3f * Mathf.Sin(getMouseAngle() * Mathf.Deg2Rad);
+
+        return lastMousePos + offset;
+    }
 }

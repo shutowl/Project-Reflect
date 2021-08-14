@@ -38,6 +38,11 @@ public class Reflect : MonoBehaviour
             //Create a player bullet going opposite direction
             Instantiate(playerNormalBullet, collision.transform.position, Quaternion.identity);
         }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            Debug.Log("Launched Enemy!");
+            collision.GetComponent<Square>().Launch(player.GetComponent<PlayerReflect>().getLastMousePositionWithOffset(), 5f);
+        }
     }
 
     public float getBulletSpeed()
