@@ -144,4 +144,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   destroyDelay: 0
+  launchSpeed: 15
   playerNormalBullet: {fileID: 216101780926376922, guid: 76da6948a8982ff4f8995394b1324153, type: 3}

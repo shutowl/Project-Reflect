@@ -8,6 +8,8 @@ public class WaveSpawner : MonoBehaviour
     public int enemiesLeft = 4;
     public float timePerEnemy = 5f;
     public float maxTime = 30f;
+    public float startTime = 5f;
+    public float restTime = 5f;
     public Text timerText;
     public Text enemiesLeftText;
     public Text scoreText;
@@ -17,7 +19,7 @@ public class WaveSpawner : MonoBehaviour
     private float waveTimer = 0f;
     private bool waveComplete = false;
     private int enemyWaveOffset = 0;
-    private int waveNumber = 1;
+    private int waveNumber = 0;
 
     public Vector2 boundsMin;
     public Vector2 boundsMax;
@@ -31,7 +33,7 @@ public class WaveSpawner : MonoBehaviour
 
     private void Start()
     {
-        waveTimer = timePerEnemy * enemiesLeft;
+        waveTimer = startTime;
         timerText.text = "Next Wave: " + System.Math.Round(waveTimer, 2);
         enemiesLeftText.text = "Enemies Left: " + enemiesLeft;
         scoreText.text = "Score: " + score;
@@ -48,7 +50,7 @@ public class WaveSpawner : MonoBehaviour
         if(waveComplete)
         {
             score += timeScore * (int)waveTimer * (int)multiplier;
-            waveTimer = 5f;
+            waveTimer = restTime;
             waveComplete = false;
             score += waveScore * waveNumber * (int)multiplier;
             scoreText.text = "Score: " + score;
@@ -109,7 +111,7 @@ public class WaveSpawner : MonoBehaviour
     public void enemyKilled(int score)
     {
         //set multiplier text
-        if (multiplier < 5.0f)
+        if (multiplier < 4.9f)
         {
             multiplier += 0.1f;
             multiplierText.text = "Combo: x" + System.Math.Round(multiplier, 1);
@@ -137,7 +139,7 @@ public class WaveSpawner : MonoBehaviour
     {
         //set multiplier text
         multiplier = 1.0f;
-        multiplierText.text = "Combo: x" + System.Math.Round(multiplier, 1);
+        multiplierText.text = "Combo: x1.0";
     }
 
 

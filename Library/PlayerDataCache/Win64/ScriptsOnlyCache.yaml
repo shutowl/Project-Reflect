@@ -1,7 +1,9 @@
 ScriptsOnlyBuild:
   usedScripts:
     Assembly-CSharp.dll:
+    - AudioManager
     - CameraFollow
+    - MenuNav
     - NormalBullet
     - PlayerHealth
     - PlayerMovement
@@ -32,10 +34,8 @@ ScriptsOnlyBuild:
     UnityEditor.Graphs.dll:
     - UnityEditor.Graphs.AnimationBlendTree.Graph
     - UnityEditor.Graphs.AnimationBlendTree.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.AnyStateNode
     - UnityEditor.Graphs.AnimationStateMachine.Graph
     - UnityEditor.Graphs.AnimationStateMachine.GraphGUI
-    - UnityEditor.Graphs.AnimationStateMachine.StateNode
     - UnityEditor.Graphs.AnimatorControllerTool
     UnityEditor.TestRunner.dll:
     - UnityEditor.TestTools.TestRunner.Api.CallbacksHolder
@@ -44,6 +44,7 @@ ScriptsOnlyBuild:
     UnityEngine.UI.dll:
     - UnityEngine.EventSystems.EventSystem
     - UnityEngine.EventSystems.StandaloneInputModule
+    - UnityEngine.UI.Button
     - UnityEngine.UI.CanvasScaler
     - UnityEngine.UI.GraphicRaycaster
     - UnityEngine.UI.Image
@@ -77,6 +78,8 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
+    - Class: 83
+      Script: {instanceID: 0}
     - Class: 91
       Script: {instanceID: 0}
     - Class: 95
@@ -84,41 +87,47 @@ ScriptsOnlyBuild:
     - Class: 104
       Script: {instanceID: 0}
     - Class: 114
-      Script: {instanceID: 630}
+      Script: {instanceID: 632}
     - Class: 114
-      Script: {instanceID: 1532}
+      Script: {instanceID: 1536}
     - Class: 114
-      Script: {instanceID: 1682}
+      Script: {instanceID: 1686}
     - Class: 114
-      Script: {instanceID: 1890}
+      Script: {instanceID: 1894}
     - Class: 114
-      Script: {instanceID: 2286}
+      Script: {instanceID: 2290}
     - Class: 114
-      Script: {instanceID: 2664}
+      Script: {instanceID: 2668}
     - Class: 114
-      Script: {instanceID: 2894}
+      Script: {instanceID: 2898}
     - Class: 114
-      Script: {instanceID: 3282}
+      Script: {instanceID: 3200}
     - Class: 114
-      Script: {instanceID: 3670}
+      Script: {instanceID: 3286}
     - Class: 114
-      Script: {instanceID: 4124}
+      Script: {instanceID: 3674}
     - Class: 114
-      Script: {instanceID: 4328}
+      Script: {instanceID: 4128}
     - Class: 114
-      Script: {instanceID: 4724}
+      Script: {instanceID: 4332}
     - Class: 114
-      Script: {instanceID: 5380}
+      Script: {instanceID: 4728}
     - Class: 114
-      Script: {instanceID: 5774}
+      Script: {instanceID: 5384}
     - Class: 114
-      Script: {instanceID: 6116}
+      Script: {instanceID: 5778}
     - Class: 114
-      Script: {instanceID: 6656}
+      Script: {instanceID: 6120}
     - Class: 114
-      Script: {instanceID: 7776}
+      Script: {instanceID: 6660}
     - Class: 114
-      Script: {instanceID: 8162}
+      Script: {instanceID: 7782}
+    - Class: 114
+      Script: {instanceID: 7814}
+    - Class: 114
+      Script: {instanceID: 8170}
+    - Class: 114
+      Script: {instanceID: 24204}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -216,7 +225,7 @@ ScriptsOnlyBuild:
     className: UnityOnMouseExitMessageListener
   - hash:
       serializedVersion: 2
-      Hash: 0aaddef1e6008e07d0c53d2440923e9b
+      Hash: 74f2520418c08870e9cce82ba17578b3
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Reflect
@@ -594,7 +603,7 @@ ScriptsOnlyBuild:
     className: ControlPlayableAsset
   - hash:
       serializedVersion: 2
-      Hash: 799b6f385a1d325340cbcb4cb73097a3
+      Hash: bc06eb958b047131fd793a79e883002d
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: WaveSpawner
@@ -1014,6 +1023,12 @@ ScriptsOnlyBuild:
     className: PlayerNormalBullet
   - hash:
       serializedVersion: 2
+      Hash: 93046362279534243958131285f7938d
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: AudioManager
+  - hash:
+      serializedVersion: 2
       Hash: 3ee38dae950a2169533c65ccdabe70cc
     assemblyName: Unity.2D.Animation.Runtime.dll
     namespaceName: UnityEngine.U2D.Animation
@@ -1126,8 +1141,14 @@ ScriptsOnlyBuild:
     assemblyName: Unity.VisualScripting.Core.dll
     namespaceName: Unity.VisualScripting
     className: UnityOnSliderValueChangedMessageListener
+  - hash:
+      serializedVersion: 2
+      Hash: 04ba7e16be0964e335bc89e10209a1b1
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: MenuNav
   platform: 19
   scenePathNames:
   - Assets/Scenes/Test Arena.unity
-  playerPath: C:/Users/Kenneth/Desktop/Coding Projects/Unity/Project-Reflect/Builds/Project
+  playerPath: C:/Users/Kenneth/Desktop/Coding Projects/Unity/Project-Reflect/Build/Project
     Reflect.exe

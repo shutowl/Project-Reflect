@@ -6,6 +6,7 @@ public class Reflect : MonoBehaviour
 {
 
     public float destroyDelay = 0f;
+    public float launchSpeed = 10f;
     private float bulletSpeed = 0;
 
     private GameObject player;
@@ -41,7 +42,7 @@ public class Reflect : MonoBehaviour
         if (collision.gameObject.CompareTag("Enemy"))
         {
             Debug.Log("Launched Enemy!");
-            collision.GetComponent<Square>().Launch(player.GetComponent<PlayerReflect>().getLastMousePositionWithOffset(), 5f);
+            collision.GetComponent<Square>().Launch(player.GetComponent<PlayerReflect>().getLastMousePositionWithOffset(), launchSpeed);
         }
     }
 

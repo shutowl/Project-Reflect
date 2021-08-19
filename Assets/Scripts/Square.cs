@@ -33,9 +33,12 @@ public class Square : MonoBehaviour
         if (fireRate >= 0)
         {
             //Fire a bullet every "fireRate" seconds
-            if (Time.time >= fireRateCooldown && firstShotDelay <= 0)
+            if (firstShotDelay <= 0)
             {
-                Fire(0f);
+                if (Time.time >= fireRateCooldown)
+                {
+                    Fire(0f);
+                }
             }
             else
                 firstShotDelay -= Time.deltaTime;
