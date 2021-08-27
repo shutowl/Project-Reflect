@@ -27,18 +27,22 @@ public class WaveSpawner : MonoBehaviour
     public GameObject[] enemies;
 
     private int score = 0;
+    private int lastScore = 0;
     public int waveScore = 100;
     public int timeScore = 50;
     private float multiplier = 1.0f;
+
+    private float timeElapsed = 0f;
+    public float lerpDuration = 3f;
 
     private void Start()
     {
         waveTimer = startTime;
         timerText.text = "Next Wave: " + System.Math.Round(waveTimer, 2);
         enemiesLeftText.text = "Enemies Left: " + enemiesLeft;
-        scoreText.text = "Score: " + score;
+        scoreText.text = "[" + score.ToString("00000000") + "]";
         waveText.text = "Wave: " + waveNumber;
-        multiplierText.text = "Combo: x" + System.Math.Round(multiplier, 1);
+        multiplierText.text = "- x" + multiplier.ToString("f1") + " -";
     }
 
     // Update is called once per frame
@@ -49,17 +53,20 @@ public class WaveSpawner : MonoBehaviour
 
         if(waveComplete)
         {
-            score += timeScore * (int)waveTimer * (int)multiplier;
+            StartCoroutine(AddScore((int)(timeScore * waveTimer)  +        //time bonus
+                                         (waveScore * waveNumber)));       //wave bonus
+
             waveTimer = restTime;
             waveComplete = false;
-            score += waveScore * waveNumber * (int)multiplier;
-            scoreText.text = "Score: " + score;
+
+            scoreText.text = "[" + score.ToString("00000000") + "]";
         }
 
         if(waveTimer <= 0)
         {
             Spawn();
         }
+
     }
 
     private void Spawn()
@@ -111,10 +118,15 @@ public class WaveSpawner : MonoBehaviour
     public void enemyKilled(int score)
     {
         //set multiplier text
-        if (multiplier < 4.9f)
+        if (multiplier < 5.0f)
         {
             multiplier += 0.1f;
-            multiplierText.text = "Combo: x" + System.Math.Round(multiplier, 1);
+            multiplierText.text = "- x" + multiplier.ToString("f1") + " -";
+        }
+        else
+        {
+            multiplier = 5.0f;
+            multiplierText.text = "- x" + multiplier.ToString("f1") + " -";
         }
 
         //set enemies killed text
@@ -125,11 +137,11 @@ public class WaveSpawner : MonoBehaviour
         }
 
         //set score text
-        this.score += (int)(score * multiplier);
-        scoreText.text = "Score: " + this.score;
+        StartCoroutine(AddScore(score));
+        //scoreText.text = "[" + this.score.ToString("00000000") + "]";
 
 
-        if(enemiesLeft <= 0)
+        if (enemiesLeft <= 0)
         {
             waveComplete = true;
         }
@@ -138,8 +150,31 @@ public class WaveSpawner : MonoBehaviour
     public void resetMultiplier()
     {
         //set multiplier text
-        multiplier = 1.0f;
-        multiplierText.text = "Combo: x1.0";
+        multiplier = multiplier / 2;
+        if (multiplier <= 1.0f)
+            multiplier = 1.0f;
+        multiplierText.text = "- x" + multiplier.ToString("f1") + " -";
+    }
+
+    IEnumerator AddScore(int score)
+    {
+        lastScore = this.score;
+        timeElapsed = 0f;
+        this.score += (int)(score * multiplier);
+
+        while (lastScore != this.score)
+        {
+            if (timeElapsed < lerpDuration)
+            {
+                lastScore = Mathf.RoundToInt(Mathf.Lerp(lastScore, this.score, timeElapsed / lerpDuration));
+                timeElapsed += Time.deltaTime;
+                scoreText.text = "[" + lastScore.ToString("00000000") + "]";
+                Debug.Log("Lerp: " + lastScore);
+                yield return null;
+            }
+            else
+                lastScore = this.score;
+        }
     }
 
 
