@@ -1745,7 +1745,7 @@ GameObject:
   - component: {fileID: 913791831}
   - component: {fileID: 913791837}
   - component: {fileID: 913791838}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
@@ -1811,8 +1811,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
-  dashRate: 2
-  dashRecovery: 0.5
+  dashRate: 1
+  dashRecovery: 0
   dashDistance: 4
   rb: {fileID: 913791834}
   dashSlider: {fileID: 881511719}
@@ -2145,7 +2145,7 @@ GameObject:
   - component: {fileID: 1019921760}
   - component: {fileID: 1019921764}
   - component: {fileID: 1019921763}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: TriggerWall
   m_TagString: Wall
   m_Icon: {fileID: 0}
@@ -3678,13 +3678,13 @@ GameObject:
   - component: {fileID: 1456840463}
   - component: {fileID: 1456840465}
   - component: {fileID: 1456840464}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1456840463
 Transform:
   m_ObjectHideFlags: 0
@@ -24946,13 +24946,13 @@ GameObject:
   - component: {fileID: 1998171281}
   - component: {fileID: 1998171283}
   - component: {fileID: 1998171282}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap_Base2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1998171281
 Transform:
   m_ObjectHideFlags: 0
@@ -25733,7 +25733,7 @@ GameObject:
   - component: {fileID: 2043184159}
   - component: {fileID: 2043184161}
   - component: {fileID: 2043184160}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Tilemap_Walls
   m_TagString: Wall
   m_Icon: {fileID: 0}

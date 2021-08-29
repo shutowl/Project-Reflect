@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private bool canDash = true;
     private bool facingWall = false;
     private Vector3 dashRayOffset = new Vector3(0, 0.5f);
+    private Vector3 mousePos = new Vector3();
 
     public Rigidbody2D rb;
     public Slider dashSlider;
@@ -39,6 +40,8 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
         if (canMove)
         {
             movement.x = Input.GetAxisRaw("Horizontal");
@@ -46,10 +49,19 @@ public class PlayerMovement : MonoBehaviour
         }
 
         animator.SetFloat("Current Direction", Mathf.Abs(currentDirection.x) + Mathf.Abs(currentDirection.y));
+        /*  Keyboard-based sprite direction
         if (currentDirection.x < 0)
             sprite.flipX = true;
         else if(currentDirection.x > 0)
             sprite.flipX = false;
+        */
+
+        // Mouse-based sprite direction
+        if (mousePos.x - transform.position.x < 0)
+            sprite.flipX = true;
+        else
+            sprite.flipX = false;
+
 
         //Checks how close player is to the wall
         Debug.DrawRay(transform.position + currentDirection - dashRayOffset, currentDirection*unitsFromWall, Color.magenta);

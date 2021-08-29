@@ -82,7 +82,7 @@ public class WaveSpawner : MonoBehaviour
             enemyWaveOffset++;
             int addEnemies = Random.Range(3 + enemyWaveOffset, 6 + enemyWaveOffset);
             enemiesLeft += addEnemies;
-            SpawnSquare(addEnemies);
+            SpawnEnemy(addEnemies);
             enemiesLeftText.text = "Enemies Left: " + enemiesLeft;
         }
         //Boss battle at wave 10
@@ -96,7 +96,7 @@ public class WaveSpawner : MonoBehaviour
             int addEnemies = Random.Range(3 + enemyWaveOffset, 6 + enemyWaveOffset);
             enemiesLeft += addEnemies;
             //Spawn different enemies
-            SpawnSquare(addEnemies);
+            SpawnEnemy(addEnemies);
             enemiesLeftText.text = "Enemies Left: " + enemiesLeft;
         }
 
@@ -107,7 +107,7 @@ public class WaveSpawner : MonoBehaviour
             waveTimer = timePerEnemy * enemiesLeft;
     }
 
-    private void SpawnSquare(int amount)
+    private void SpawnEnemy(int amount)
     {
         for(int i = 0; i < amount; i++)
         {

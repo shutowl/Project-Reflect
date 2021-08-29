@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 5747038240486185369}
   - component: {fileID: 5747038240486185368}
-  - component: {fileID: 5747038240486185371}
   - component: {fileID: 5747038240486185370}
+  - component: {fileID: 5747038240486185371}
   - component: {fileID: 6796357840852948938}
   - component: {fileID: 5747038240486185445}
   m_Layer: 2
@@ -87,7 +87,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &5747038240486185371
+--- !u!61 &5747038240486185370
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -97,7 +97,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -113,17 +113,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!61 &5747038240486185370
+--- !u!61 &5747038240486185371
 BoxCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5747038240486185444}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -153,9 +153,9 @@ Rigidbody2D:
   m_UseAutoMass: 0
   m_Mass: 1
   m_LinearDrag: 3
-  m_AngularDrag: 0.05
+  m_AngularDrag: 0
   m_GravityScale: 0
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 6200000, guid: 01bf7e2ee27bb814686663008b97aa47, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
@@ -176,6 +176,7 @@ MonoBehaviour:
   score: 50
   touchDamage: 10
   bullet: {fileID: 216101780926376922, guid: ddd5ec5ed4a520a48b0305e7422c716c, type: 3}
-  fireRate: 1
+  fireRate: 1.5
   firstShotDelay: 1
-  deceleration: 0.6
+  launched: 0
+  launchSpeed: 20
