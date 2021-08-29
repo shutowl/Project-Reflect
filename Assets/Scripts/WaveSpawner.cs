@@ -169,11 +169,14 @@ public class WaveSpawner : MonoBehaviour
                 lastScore = Mathf.RoundToInt(Mathf.Lerp(lastScore, this.score, timeElapsed / lerpDuration));
                 timeElapsed += Time.deltaTime;
                 scoreText.text = "[" + lastScore.ToString("00000000") + "]";
-                Debug.Log("Lerp: " + lastScore);
+                //Debug.Log("Lerp: " + lastScore);
                 yield return null;
             }
             else
+            {
                 lastScore = this.score;
+                scoreText.text = "[" + lastScore.ToString("00000000") + "]";
+            }
         }
     }
 

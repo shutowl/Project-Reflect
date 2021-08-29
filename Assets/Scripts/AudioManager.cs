@@ -1,6 +1,7 @@
 using UnityEngine.Audio;
 using System;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class AudioManager : MonoBehaviour
 {
@@ -35,7 +36,7 @@ public class AudioManager : MonoBehaviour
 
     void Start()
     {
-        Play("BGM");
+		//Play("BGM"); //replace with menu BGM later
     }
 
 	public void Play(string sound)
@@ -51,9 +52,40 @@ public class AudioManager : MonoBehaviour
 		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
 
 		s.source.Play();
+		s.source.mute = false;
 	}
 
-	public void SetVolume(string sound, float volume)
+    public void Stop(string sound)
+    {
+		Sound s = Array.Find(sounds, item => item.name == sound);
+		if (s == null)
+		{
+			Debug.LogWarning("Sound: " + name + " not found!");
+			return;
+		}
+
+		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
+		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
+
+		s.source.Stop();
+	}
+
+	public void Mute(string sound, bool mute)
+    {
+		Sound s = Array.Find(sounds, item => item.name == sound);
+		if (s == null)
+		{
+			Debug.LogWarning("Sound: " + name + " not found!");
+			return;
+		}
+
+		s.source.volume = s.volume * (1f + UnityEngine.Random.Range(-s.volumeVariance / 2f, s.volumeVariance / 2f));
+		s.source.pitch = s.pitch * (1f + UnityEngine.Random.Range(-s.pitchVariance / 2f, s.pitchVariance / 2f));
+
+		s.source.mute = mute;
+	}
+
+    public void SetVolume(string sound, float volume)
     {
 		Sound s = Array.Find(sounds, item => item.name == sound);
 		if (s == null)
@@ -74,6 +106,6 @@ public class AudioManager : MonoBehaviour
 			return 0f;
 		}
 
-		return s.volume;
+		return s.source.volume;
 	}
 }
