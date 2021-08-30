@@ -19,11 +19,13 @@ public class Enemy : MonoBehaviour
     public float firstShotDelay = 1f;
 
     public bool launched = false;
-    private bool isDead = false;
+    public bool isDead = false;
     public float launchSpeed = 10f;
 
     private void Start()
     {
+        launched = false;
+        isDead = false;
         WaveSpawner = GameObject.Find("WaveSpawner");
         player = GameObject.FindGameObjectWithTag("Player");
         rb = GetComponent<Rigidbody2D>();
@@ -46,49 +48,34 @@ public class Enemy : MonoBehaviour
                 firstShotDelay -= Time.deltaTime;
         }
 
-        if (rb.velocity == Vector2.zero)
+        if (rb.velocity.x <= 0.5 && rb.velocity.y <= 0.5)
+        {
+            rb.velocity = Vector2.zero;
             launched = false;
+        }
+        else
+            launched = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(!isDead && collision.gameObject.CompareTag("PlayerBullet"))
         {
-            try
-            {
-                //Debug.Log("Player bullet hit Enemy!");
-                isDead = true;
-                WaveSpawner.GetComponent<WaveSpawner>().enemyKilled(score);
-                StartCoroutine(Flash(gameObject.GetComponent<SpriteRenderer>(), 1, 0.1f));
-                Destroy(gameObject, 1.2f);
-                //insert death animation here
-            }
-            catch (MissingReferenceException)
-            {
-                Debug.Log("Missing Reference Exception: Enemy already dead");
-            }
+            Death(this.gameObject);
         }
-        if(!isDead && launched && collision.CompareTag("Enemy"))
+        if(launched && collision.CompareTag("Enemy"))
         {
-            try
+            if (!isDead)
             {
-                isDead = true;
-                StartCoroutine(Flash(gameObject.GetComponent<SpriteRenderer>(), 1, 0.1f));
-                Destroy(gameObject, 1.2f);
-                WaveSpawner.GetComponent<WaveSpawner>().enemyKilled(score);
+                Death(this.gameObject);
+            }
+            if (!collision.gameObject.GetComponent<Enemy>().isDead)
+            {
+                Death(collision.gameObject);
+            }
 
-                collision.gameObject.GetComponent<Enemy>().launched = true;
-                collision.gameObject.GetComponent<Enemy>().isDead = true;
-                StartCoroutine(Flash(collision.gameObject.GetComponent<SpriteRenderer>(), 1, 0.1f));
-                Destroy(collision.gameObject, 1.2f);
-                WaveSpawner.GetComponent<WaveSpawner>().enemyKilled(collision.GetComponent<Enemy>().score);
-            }
-            catch (MissingReferenceException)
-            {
-                Debug.Log("Missing Reference Exception: Enemy already dead");
-            }
         }
-        if(!launched && collision.gameObject.CompareTag("Reflect"))
+        if (!launched && collision.gameObject.CompareTag("Reflect"))
         {
             Debug.Log("Launched Enemy!");
             Launch(player.GetComponent<PlayerReflect>().getLastMousePositionWithOffset(), launchSpeed);
@@ -108,15 +95,28 @@ public class Enemy : MonoBehaviour
         rb.velocity = ((direction - transform.position).normalized * speed);
     }
 
+    private void Death(GameObject enemy)
+    {
+        enemy.GetComponent<Enemy>().isDead = true;
+        StartCoroutine(Flash(enemy.gameObject.GetComponent<SpriteRenderer>(), 1, 0.1f));
+        Destroy(enemy.gameObject, 1f);
+        WaveSpawner.GetComponent<WaveSpawner>().enemyKilled(enemy.GetComponent<Enemy>().score);
+        //insert death animation here
+    }
+
     IEnumerator Flash(SpriteRenderer sprite, float duration, float rate)
     {
         for (int n = 0; n < duration / rate / 2; n++)
         {
-            sprite.color = Color.red;
-            yield return new WaitForSeconds(rate);
-            sprite.color = Color.white;
-            yield return new WaitForSeconds(rate);
+            if (sprite != null)
+            {
+                sprite.color = Color.red;
+                yield return new WaitForSeconds(rate);
+                sprite.color = Color.white;
+                yield return new WaitForSeconds(rate);
+            }
         }
     }
+
 
 }

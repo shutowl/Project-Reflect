@@ -7,6 +7,8 @@ public class Reflect : MonoBehaviour
 
     public float destroyDelay = 0f;
     private float bulletSpeed = 0;
+    private float angle;
+    private Vector3 lastMousePos = new Vector3();
 
     private GameObject player;
     public GameObject playerNormalBullet;
@@ -15,9 +17,11 @@ public class Reflect : MonoBehaviour
     void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
+        lastMousePos = player.GetComponent<PlayerReflect>().getLastMousePositionWithOffset();
 
         //Rotate towards mouse
-        transform.rotation = Quaternion.Euler(new Vector3(0, 0, player.GetComponent<PlayerReflect>().getMouseAngleWithOffset()));
+        angle = player.GetComponent<PlayerReflect>().getMouseAngleWithOffset();
+        transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
         
         Destroy(gameObject, this.GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).length + destroyDelay);
 
@@ -45,5 +49,13 @@ public class Reflect : MonoBehaviour
         return bulletSpeed;
     }
 
+    public float getReflectAngle()
+    {
+        return angle;
+    }
 
+    public Vector3 getLastMousePos()
+    {
+        return lastMousePos;
+    }
 }

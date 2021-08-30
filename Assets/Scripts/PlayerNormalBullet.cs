@@ -25,8 +25,8 @@ public class PlayerNormalBullet : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
 
         //Determine mouse position and angle
-        mousePos = player.GetComponent<PlayerReflect>().getLastMousePositionWithOffset();
-        mouseAngle = player.GetComponent<PlayerReflect>().getMouseAngle(transform.position, mousePos);
+        mousePos = GameObject.FindGameObjectWithTag("Reflect").GetComponent<Reflect>().getLastMousePos();
+        mouseAngle = GameObject.FindGameObjectWithTag("Reflect").GetComponent<Reflect>().getReflectAngle();
 
         //Determine direction of bullet
         direction = (mousePos - transform.position).normalized * speed;

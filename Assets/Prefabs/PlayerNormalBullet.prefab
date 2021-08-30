@@ -156,8 +156,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 4
-  offset: 3
-  angleOffset: 90
+  angleOffset: 180
   explosionLength: 0.4
   animator: {fileID: -7274666637006459194}
 --- !u!95 &-7274666637006459194

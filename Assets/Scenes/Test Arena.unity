@@ -1864,7 +1864,7 @@ Rigidbody2D:
   m_Material: {fileID: 0}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 4
 --- !u!212 &913791835
 SpriteRenderer:
@@ -3678,13 +3678,13 @@ GameObject:
   - component: {fileID: 1456840463}
   - component: {fileID: 1456840465}
   - component: {fileID: 1456840464}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Tilemap_Base
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1456840463
 Transform:
   m_ObjectHideFlags: 0
@@ -24946,13 +24946,13 @@ GameObject:
   - component: {fileID: 1998171281}
   - component: {fileID: 1998171283}
   - component: {fileID: 1998171282}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Tilemap_Base2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1998171281
 Transform:
   m_ObjectHideFlags: 0
@@ -26966,7 +26966,7 @@ Rigidbody2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2043184155}
-  m_BodyType: 2
+  m_BodyType: 1
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
@@ -26977,7 +26977,7 @@ Rigidbody2D:
   m_Material: {fileID: 6200000, guid: accd1710d077522449753e31b5fdb82d, type: 2}
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
   m_Constraints: 7
 --- !u!66 &2043184161
 CompositeCollider2D:
