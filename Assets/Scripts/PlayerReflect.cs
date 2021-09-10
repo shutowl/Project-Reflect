@@ -36,6 +36,9 @@ public class PlayerReflect : MonoBehaviour
     public float reflectDelay = 0.5f; //delay between reflects
     private float reflectDelayTimer = 0f;
 
+    public bool laserPointer = true;
+    private LineRenderer laser;
+
 
     private void Start()
     {
@@ -43,6 +46,8 @@ public class PlayerReflect : MonoBehaviour
         reflectSliderBlack.value = reflectRateBlack;
         reflectSliderRed.maxValue = reflectRateRed;
         reflectSliderRed.value = reflectRateRed;
+
+        laser = gameObject.GetComponent<LineRenderer>();
     }
 
     // Update is called once per frame
@@ -93,6 +98,20 @@ public class PlayerReflect : MonoBehaviour
         if(reflectDelayTimer >= 0)
         {
             reflectDelayTimer -= Time.deltaTime;
+        }
+
+        laser.enabled = laserPointer;
+        if (laserPointer)
+        {
+            Vector3[] pos = new Vector3[2];
+            pos[0] = transform.position;
+            pos[1] = mousePos;
+            laser.startWidth = 0.03f;
+            laser.endWidth = 0.03f;
+            laser.startColor = Color.red;
+            laser.endColor = Color.red;
+            laser.SetPositions(pos);
+            laser.useWorldSpace = true;
         }
 
     }

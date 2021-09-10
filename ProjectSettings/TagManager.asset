@@ -10,6 +10,7 @@ TagManager:
   - NormalBullet
   - PlayerBullet
   - PlayerHitbox
+  - Button
   layers:
   - Default
   - TransparentFX

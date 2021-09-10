@@ -1,8 +1,10 @@
 Layers:
 
-Player UI = 5
-Base2 = 4
-Bullets = 3
-Player = 2
-Walls = 1
+Player UI = 10
+Base2 = 5
+OOB = 5
+Bullets = 4
+Player = 3
+Walls = 2
+Laser = 1
 Base1 = 0

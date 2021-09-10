@@ -57,10 +57,13 @@ public class PlayerMovement : MonoBehaviour
         */
 
         // Mouse-based sprite direction
-        if (mousePos.x - transform.position.x < 0)
-            sprite.flipX = true;
-        else
-            sprite.flipX = false;
+        if (!FindObjectOfType<MenuManager>().getPaused())
+        {
+            if (mousePos.x - transform.position.x < 0)
+                sprite.flipX = true;
+            else
+                sprite.flipX = false;
+        }
 
 
         //Checks how close player is to the wall

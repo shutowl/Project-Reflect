@@ -179,4 +179,5 @@ MonoBehaviour:
   fireRate: 1.5
   firstShotDelay: 1
   launched: 0
-  launchSpeed: 20
+  isDead: 0
+  launchSpeed: 25

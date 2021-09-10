@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MenuManager : MonoBehaviour
 {
@@ -142,4 +143,37 @@ public class MenuManager : MonoBehaviour
         }
     }
 
+    public void HighlightButtonOn(Image image)
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 0)   //Main Menu
+        {
+            image.enabled = true;
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)   //Game Screen
+        {
+            if (isPaused)
+                image.enabled = true;
+        }
+    }
+
+    public void HighlightButtonOff(Image image)
+    {
+        if (SceneManager.GetActiveScene().buildIndex == 0)   //Main Menu
+        {
+            image.enabled = false;
+        }
+
+        if (SceneManager.GetActiveScene().buildIndex == 1)   //Game Screen
+        {
+            if (isPaused)
+                image.enabled = false;
+        }
+    }
+
+
+    public bool getPaused()
+    {
+        return isPaused;
+    }
 }
