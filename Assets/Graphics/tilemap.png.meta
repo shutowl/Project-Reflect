@@ -78,7 +78,7 @@ TextureImporter:
       213: -3787535494737378260
     second: tilemap_24
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -99,6 +99,7 @@ TextureImporter:
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   vTOnly: 0
+  ignoreMasterTextureLimit: 0
   grayScaleToAlpha: 0
   generateCubemap: 6
   cubemapConvolution: 0
@@ -137,6 +138,7 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -152,6 +154,30 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   - serializedVersion: 3
     buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
     maxTextureSize: 2048
     resizeAlgorithm: 0
     textureFormat: -1
@@ -724,6 +750,32 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
+    nameFileIdTable:
+      tilemap_13: -2455287069041890485
+      tilemap_23: 4865326696082551069
+      tilemap_14: -702408572997326234
+      tilemap_15: -4080137071908401649
+      tilemap_20: -3639016157858113680
+      tilemap_7: 4755373664117421245
+      tilemap_19: 7179352014698049699
+      tilemap_8: 778136270091268006
+      tilemap_5: -8420670720628680731
+      tilemap_2: 1873917168148291061
+      tilemap_3: 4035501790466999928
+      tilemap_12: 1761957491966546689
+      tilemap_16: 2311664880600967918
+      tilemap_24: -3787535494737378260
+      tilemap_10: -8435285650344880516
+      tilemap_0: 8490642196906846815
+      tilemap_18: -6813189574185817458
+      tilemap_17: -3772098893637499282
+      tilemap_22: 1432774421400288080
+      tilemap_6: 8266258911003420344
+      tilemap_9: 3400160013776356846
+      tilemap_11: 2376107565742220442
+      tilemap_4: -8717017754119436831
+      tilemap_21: 5645451735475491846
+      tilemap_1: 7988907048659085410
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
